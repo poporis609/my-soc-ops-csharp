@@ -1,31 +1,74 @@
-/* ========================================
-   CYBERPUNK NEON THEME
-   ======================================== */
+/* ============================================================
+   ⛏️  MINECRAFT THEME — SocOps Bingo
+   Pixel-perfect blocky design inspired by Minecraft UI
+   ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;700&display=swap');
+/* Google Fonts — VT323 pixel font + Silkscreen for headings */
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=Silkscreen:wght@400;700&display=swap');
 
+/* ============================================================
+   CSS VARIABLES — Minecraft Palette
+   ============================================================ */
 :root {
-    /* Neon Colors */
-    --neon-cyan: #00f5ff;
-    --neon-magenta: #ff00ff;
-    --neon-purple: #8b5cf6;
-    --neon-pink: #ec4899;
-    --neon-yellow: #facc15;
-    
-    /* Background Colors */
-    --bg-dark: #0a0a0f;
-    --bg-card: rgba(20, 20, 35, 0.9);
-    --bg-card-hover: rgba(30, 30, 50, 0.95);
-    
-    /* Text Colors */
-    --text-primary: #e0e0ff;
-    --text-secondary: #9090b0;
-    --text-glow: #00f5ff;
-    
-    /* Grid pattern */
-    --grid-color: rgba(0, 245, 255, 0.1);
+    /* --- Dirt & Earth tones --- */
+    --mc-dirt:          #8B6914;
+    --mc-dirt-dark:     #6B4E12;
+    --mc-dirt-light:    #A07B28;
+
+    /* --- Stone tones --- */
+    --mc-stone:         #7F7F7F;
+    --mc-stone-dark:    #5A5A5A;
+    --mc-stone-light:   #A0A0A0;
+
+    /* --- Grass / Creeper green --- */
+    --mc-grass:         #5B8C2A;
+    --mc-grass-dark:    #3E6B1F;
+    --mc-grass-light:   #7EC850;
+
+    /* --- Wood / Oak --- */
+    --mc-oak:           #BC9862;
+    --mc-oak-dark:      #8B6914;
+    --mc-oak-light:     #D4B87A;
+
+    /* --- Dark Oak / Obsidian --- */
+    --mc-darkoak:       #3B2714;
+    --mc-obsidian:      #1A0A2E;
+
+    /* --- Sky & Water --- */
+    --mc-sky:           #7BA4DB;
+    --mc-water:         #2B65B5;
+
+    /* --- Lava / Redstone --- */
+    --mc-lava:          #CF4B16;
+    --mc-redstone:      #AA0000;
+
+    /* --- Gold / XP --- */
+    --mc-gold:          #FCDB05;
+    --mc-xp-green:      #7FCC19;
+
+    /* --- Diamond --- */
+    --mc-diamond:       #5DECF5;
+
+    /* --- Text --- */
+    --mc-text:          #3F3F3F;
+    --mc-text-light:    #AAAAAA;
+    --mc-text-white:    #FFFFFF;
+    --mc-text-shadow:   #3F3F3F;
+
+    /* --- UI Panel --- */
+    --mc-panel-bg:      #C6C6C6;
+    --mc-panel-border:  #373737;
+    --mc-panel-light:   #FFFFFF;
+    --mc-panel-dark:    #555555;
+
+    /* --- Font --- */
+    --mc-font:          'VT323', 'Courier New', monospace;
+    --mc-font-heading:  'Silkscreen', 'VT323', monospace;
 }
 
+/* ============================================================
+   BASE STYLES — Minecraft "Inventory" UI feel
+   ============================================================ */
 html,
 body,
 #app {
@@ -34,57 +77,39 @@ body,
 }
 
 body {
-    font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+    font-family: var(--mc-font);
+    font-size: 18px;
+    letter-spacing: 0.5px;
     -webkit-tap-highlight-color: transparent;
-    background: var(--bg-dark);
-    background-image: 
-        linear-gradient(var(--grid-color) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px),
-        radial-gradient(ellipse at 50% 0%, rgba(139, 92, 246, 0.15) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
-    background-size: 50px 50px, 50px 50px, 100% 100%, 100% 100%;
-    color: var(--text-primary);
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: auto;
+    image-rendering: pixelated;
+    background-color: var(--mc-dirt);
+    color: var(--mc-text);
+
+    /* Subtle dirt texture pattern via CSS */
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 4px,
+            rgba(0,0,0,0.03) 4px,
+            rgba(0,0,0,0.03) 8px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 4px,
+            rgba(0,0,0,0.03) 4px,
+            rgba(0,0,0,0.03) 8px
+        );
 }
 
-/* Typography */
-.font-display {
-    font-family: 'Orbitron', monospace;
-    letter-spacing: 0.1em;
-}
+/* ============================================================
+   UTILITY CLASSES — Tailwind-like but Minecraft-themed
+   ============================================================ */
 
-/* Neon glow effects */
-.neon-text {
-    text-shadow: 
-        0 0 5px var(--neon-cyan),
-        0 0 10px var(--neon-cyan),
-        0 0 20px var(--neon-cyan),
-        0 0 40px var(--neon-cyan);
-}
-
-.neon-text-pink {
-    text-shadow: 
-        0 0 5px var(--neon-magenta),
-        0 0 10px var(--neon-magenta),
-        0 0 20px var(--neon-magenta);
-}
-
-.neon-border {
-    box-shadow: 
-        0 0 5px var(--neon-cyan),
-        0 0 10px var(--neon-cyan),
-        inset 0 0 5px rgba(0, 245, 255, 0.1);
-    border: 1px solid var(--neon-cyan);
-}
-
-.neon-border-pink {
-    box-shadow: 
-        0 0 5px var(--neon-magenta),
-        0 0 10px var(--neon-magenta),
-        inset 0 0 5px rgba(255, 0, 255, 0.1);
-    border: 1px solid var(--neon-magenta);
-}
-
-/* Utility classes */
+/* --- Layout --- */
 .h-full { height: 100%; }
 .min-h-full { min-height: 100%; }
 .w-full { width: 100%; }
@@ -102,11 +127,10 @@ body {
 
 .grid { display: grid; }
 .grid-cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-.gap-1 { gap: 0.25rem; }
-.gap-2 { gap: 0.5rem; }
+.gap-1 { gap: 3px; }
 
+/* --- Spacing --- */
 .p-1 { padding: 0.25rem; }
-.p-2 { padding: 0.5rem; }
 .p-3 { padding: 0.75rem; }
 .p-4 { padding: 1rem; }
 .p-6 { padding: 1.5rem; }
@@ -126,80 +150,105 @@ body {
 .mb-8 { margin-bottom: 2rem; }
 .mx-auto { margin-left: auto; margin-right: auto; }
 
-/* Cyberpunk themed colors */
-.bg-dark { background-color: var(--bg-dark); }
-.bg-card { background-color: var(--bg-card); }
-.bg-white { background-color: var(--bg-card); }
-.bg-gray-50 { background-color: rgba(30, 30, 50, 0.5); }
-.bg-gray-100 { background-color: rgba(40, 40, 60, 0.5); }
-.bg-amber-100 { background-color: rgba(250, 204, 21, 0.2); }
-.bg-amber-200 { background-color: rgba(250, 204, 21, 0.3); }
-.bg-accent { 
-    background: linear-gradient(135deg, var(--neon-cyan) 0%, var(--neon-purple) 100%);
+/* --- Minecraft Colors --- */
+.bg-white {
+    background-color: var(--mc-panel-bg);
 }
-.bg-marked { 
-    background: linear-gradient(135deg, rgba(0, 245, 255, 0.3) 0%, rgba(139, 92, 246, 0.3) 100%);
-    border: 1px solid var(--neon-cyan);
+.bg-gray-50 {
+    /* Dirt background with grass accent */
+    background-color: var(--mc-dirt);
+    background-image:
+        linear-gradient(180deg, var(--mc-grass) 0%, var(--mc-grass-dark) 4px, var(--mc-dirt) 4px);
 }
-.bg-black\/50 { background-color: rgba(10, 10, 15, 0.9); }
+.bg-gray-100 {
+    background-color: var(--mc-stone);
+}
+.bg-amber-100 {
+    background-color: var(--mc-gold);
+    filter: brightness(1.3);
+}
+.bg-amber-200 {
+    background-color: var(--mc-gold);
+}
+.bg-accent {
+    background-color: var(--mc-grass);
+}
+.bg-marked {
+    background-color: var(--mc-xp-green);
+    filter: brightness(0.85);
+}
+.bg-black\/50 {
+    background-color: rgba(0, 0, 0, 0.7);
+}
 
-.text-white { color: var(--text-primary); }
-.text-gray-500 { color: var(--text-secondary); }
-.text-gray-600 { color: var(--text-secondary); }
-.text-gray-700 { color: var(--text-primary); }
-.text-gray-800 { color: var(--text-primary); }
-.text-gray-900 { color: var(--text-primary); }
-.text-green-600 { color: var(--neon-cyan); }
-.text-green-800 { color: var(--neon-cyan); }
-.text-amber-500 { color: var(--neon-yellow); }
-.text-amber-800 { color: var(--neon-yellow); }
-.text-amber-900 { color: var(--neon-yellow); }
-.text-cyan { color: var(--neon-cyan); }
-.text-magenta { color: var(--neon-magenta); }
+/* --- Text Colors --- */
+.text-white { color: var(--mc-text-white); text-shadow: 2px 2px 0px rgba(0,0,0,0.4); }
+.text-gray-500 { color: var(--mc-text-light); }
+.text-gray-600 { color: var(--mc-stone-light); }
+.text-gray-700 { color: var(--mc-stone-dark); }
+.text-gray-800 { color: var(--mc-text); }
+.text-gray-900 { color: var(--mc-darkoak); text-shadow: 1px 1px 0px rgba(0,0,0,0.2); }
+.text-green-600 { color: var(--mc-grass); }
+.text-green-800 { color: var(--mc-grass-dark); }
+.text-amber-500 { color: var(--mc-gold); text-shadow: 2px 2px 0px rgba(0,0,0,0.5); }
+.text-amber-800 { color: var(--mc-oak-dark); }
+.text-amber-900 { color: var(--mc-dirt-dark); }
 
-.text-xs { font-size: 0.75rem; line-height: 1rem; }
-.text-sm { font-size: 0.875rem; line-height: 1.25rem; }
-.text-lg { font-size: 1.125rem; line-height: 1.75rem; }
-.text-xl { font-size: 1.25rem; line-height: 1.75rem; }
-.text-2xl { font-size: 1.5rem; line-height: 2rem; }
-.text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
-.text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
-.text-5xl { font-size: 3rem; line-height: 1; }
+/* --- Typography (pixel-scaled sizes) --- */
+.text-xs { font-size: 14px; line-height: 18px; }
+.text-sm { font-size: 16px; line-height: 22px; }
+.text-lg { font-size: 22px; line-height: 28px; }
+.text-3xl { font-size: 36px; line-height: 40px; font-family: var(--mc-font-heading); }
+.text-4xl { font-size: 44px; line-height: 48px; font-family: var(--mc-font-heading); }
+.text-5xl { font-size: 56px; line-height: 1; }
 
-.font-medium { font-weight: 500; }
-.font-semibold { font-weight: 600; }
-.font-bold { font-weight: 700; }
-.uppercase { text-transform: uppercase; }
-.tracking-wider { letter-spacing: 0.1em; }
+.font-semibold { font-weight: 700; }
+.font-bold { font-weight: 700; letter-spacing: 1px; }
 
 .text-center { text-align: center; }
 .text-left { text-align: left; }
 
-.border { border-width: 1px; border-color: rgba(0, 245, 255, 0.3); }
-.border-b { border-bottom-width: 1px; }
-.border-gray-200 { border-color: rgba(0, 245, 255, 0.2); }
-.border-gray-300 { border-color: rgba(0, 245, 255, 0.3); }
-.border-amber-400 { border-color: var(--neon-yellow); }
-.border-marked-border { border-color: var(--neon-cyan); }
-.border-cyan { border-color: var(--neon-cyan); }
+/* --- Minecraft Borders (BLOCKY — no rounded corners!) --- */
+.border {
+    border-width: 3px;
+    border-style: solid;
+}
+.border-b {
+    border-bottom-width: 3px;
+    border-bottom-style: solid;
+}
+.border-gray-200 { border-color: var(--mc-panel-dark); }
+.border-gray-300 { border-color: var(--mc-stone-dark); }
+.border-amber-400 { border-color: var(--mc-gold); }
+.border-marked-border { border-color: var(--mc-grass); }
 
-.rounded { border-radius: 0.25rem; }
-.rounded-lg { border-radius: 0.5rem; }
-.rounded-xl { border-radius: 0.75rem; }
+/* Minecraft has NO rounded corners — everything is blocky! */
+.rounded { border-radius: 0px; }
+.rounded-lg { border-radius: 0px; }
+.rounded-xl { border-radius: 0px; }
 
-.shadow-sm { box-shadow: 0 0 10px rgba(0, 245, 255, 0.1); }
-.shadow-xl { box-shadow: 0 0 30px rgba(0, 245, 255, 0.2), 0 0 60px rgba(139, 92, 246, 0.1); }
-.shadow-neon { box-shadow: 0 0 20px var(--neon-cyan), 0 0 40px rgba(0, 245, 255, 0.3); }
+/* --- Minecraft 3D Panel Shadows --- */
+.shadow-sm {
+    box-shadow:
+        inset -2px -2px 0px var(--mc-panel-dark),
+        inset 2px 2px 0px var(--mc-panel-light);
+}
+.shadow-xl {
+    box-shadow:
+        inset -3px -3px 0px var(--mc-panel-dark),
+        inset 3px 3px 0px var(--mc-panel-light),
+        4px 4px 0px rgba(0,0,0,0.3);
+}
 
 .space-y-2 > * + * { margin-top: 0.5rem; }
-.space-y-4 > * + * { margin-top: 1rem; }
 
+/* --- Positioning --- */
 .fixed { position: fixed; }
 .absolute { position: absolute; }
 .relative { position: relative; }
 .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
-.top-0\.5 { top: 0.125rem; }
-.right-0\.5 { right: 0.125rem; }
+.top-0\.5 { top: 2px; }
+.right-0\.5 { right: 2px; }
 
 .z-50 { z-index: 50; }
 
@@ -207,184 +256,137 @@ body {
 
 .select-none { user-select: none; }
 
-.overflow-hidden { overflow: hidden; }
-
-/* Transitions & Animations */
-.transition-all { 
-    transition-property: all; 
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); 
-    transition-duration: 200ms; 
+/* --- Minecraft Transitions (subtle, blocky feel) --- */
+.transition-all {
+    transition-property: all;
+    transition-timing-function: steps(3, end);
+    transition-duration: 100ms;
 }
-.transition-colors { 
-    transition-property: color, background-color, border-color, box-shadow; 
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); 
-    transition-duration: 200ms; 
+.transition-colors {
+    transition-property: color, background-color, border-color, box-shadow;
+    transition-timing-function: steps(3, end);
+    transition-duration: 100ms;
 }
-.duration-150 { transition-duration: 150ms; }
-.duration-300 { transition-duration: 300ms; }
+.duration-150 { transition-duration: 100ms; }
 
-/* Hover effects for cyberpunk buttons */
+button:active .active\:bg-gray-100 { background-color: var(--mc-stone); }
+button:active .active\:bg-accent-light { background-color: var(--mc-grass-light); }
+
+/* ============================================================
+   MINECRAFT BUTTON STYLE
+   Classic 3D embossed look from Minecraft menus
+   ============================================================ */
 button {
     cursor: pointer;
-    border: none;
-    background: none;
+    border: 2px solid;
+    border-color: var(--mc-stone-light) var(--mc-stone-dark) var(--mc-stone-dark) var(--mc-stone-light);
+    background-color: var(--mc-panel-bg);
     font: inherit;
-    font-family: 'Rajdhani', sans-serif;
+    font-family: var(--mc-font);
+    color: var(--mc-text);
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
+    image-rendering: pixelated;
+}
+
+button:hover {
+    background-color: var(--mc-stone-light);
+    border-color: var(--mc-panel-light) var(--mc-panel-dark) var(--mc-panel-dark) var(--mc-panel-light);
+    color: var(--mc-gold);
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.5);
+}
+
+button:active {
+    background-color: var(--mc-stone-dark);
+    border-color: var(--mc-panel-dark) var(--mc-stone-light) var(--mc-stone-light) var(--mc-panel-dark);
+    transform: translate(1px, 1px);
+    color: var(--mc-text-white);
 }
 
 button:disabled {
     cursor: default;
-    opacity: 0.5;
+    opacity: 0.6;
+    background-color: var(--mc-stone);
+    border-color: var(--mc-stone-dark);
+    color: var(--mc-text-light);
 }
 
-/* Cyberpunk Button Styles */
-.cyber-button {
-    position: relative;
-    background: linear-gradient(135deg, var(--neon-cyan) 0%, var(--neon-purple) 100%);
-    color: var(--bg-dark);
-    font-family: 'Orbitron', monospace;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    padding: 1rem 2rem;
-    border: none;
-    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
-    transition: all 0.3s ease;
+/* ============================================================
+   MINECRAFT ACCENT BUTTON (Grass-green primary action)
+   ============================================================ */
+button.bg-accent,
+button[class*="bg-accent"] {
+    background-color: var(--mc-grass);
+    border-color: var(--mc-grass-light) var(--mc-grass-dark) var(--mc-grass-dark) var(--mc-grass-light);
+    color: var(--mc-text-white);
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.4);
+    font-family: var(--mc-font-heading);
+    font-size: 20px;
+    letter-spacing: 1px;
 }
 
-.cyber-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 30px var(--neon-cyan), 0 0 60px rgba(0, 245, 255, 0.5);
+button.bg-accent:hover,
+button[class*="bg-accent"]:hover {
+    background-color: var(--mc-grass-light);
+    border-color: var(--mc-xp-green) var(--mc-grass-dark) var(--mc-grass-dark) var(--mc-xp-green);
+    color: var(--mc-gold);
 }
 
-.cyber-button::before {
-    content: '';
-    position: absolute;
-    inset: 2px;
-    background: var(--bg-dark);
-    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+button.bg-accent:active,
+button[class*="bg-accent"]:active {
+    background-color: var(--mc-grass-dark);
+    border-color: var(--mc-grass-dark) var(--mc-grass-light) var(--mc-grass-light) var(--mc-grass-dark);
 }
 
-.cyber-button:hover::before {
-    opacity: 1;
+/* ============================================================
+   BINGO SQUARE — Minecraft Inventory Slot Style
+   ============================================================ */
+button.relative {
+    background-color: var(--mc-panel-bg);
+    border: 2px solid;
+    border-color: var(--mc-panel-dark) var(--mc-panel-light) var(--mc-panel-light) var(--mc-panel-dark);
+    box-shadow: inset 1px 1px 0px rgba(255,255,255,0.3), inset -1px -1px 0px rgba(0,0,0,0.2);
+    font-size: 13px;
+    line-height: 1.2;
 }
 
-.cyber-button:hover {
-    color: var(--neon-cyan);
+button.relative:hover:not(:disabled) {
+    background-color: var(--mc-stone-light);
+    border-color: var(--mc-panel-light) var(--mc-panel-dark) var(--mc-panel-dark) var(--mc-panel-light);
 }
 
-/* Bingo Square Cyberpunk Style */
-.cyber-square {
-    background: var(--bg-card);
-    border: 1px solid rgba(0, 245, 255, 0.3);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
+/* Marked square — Emerald / XP green glow */
+button.relative.bg-marked {
+    background-color: #3a5c1f;
+    border-color: var(--mc-grass-light) var(--mc-grass-dark) var(--mc-grass-dark) var(--mc-grass-light);
+    color: var(--mc-xp-green);
+    text-shadow: 0 0 4px rgba(127, 204, 25, 0.5);
+    box-shadow:
+        inset 1px 1px 0px rgba(127,204,25,0.3),
+        inset -1px -1px 0px rgba(0,0,0,0.3),
+        0 0 6px rgba(127, 204, 25, 0.2);
 }
 
-.cyber-square::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.2), transparent);
-    transition: left 0.5s ease;
+/* Winning square — Gold / enchanted glow */
+button.relative.bg-amber-200 {
+    background-color: var(--mc-oak-dark);
+    border-color: var(--mc-gold) var(--mc-dirt-dark) var(--mc-dirt-dark) var(--mc-gold);
+    color: var(--mc-gold);
+    text-shadow: 0 0 6px rgba(252, 219, 5, 0.6);
+    animation: mc-enchant-glow 2s ease-in-out infinite;
+    box-shadow:
+        inset 1px 1px 0px rgba(252,219,5,0.3),
+        inset -1px -1px 0px rgba(0,0,0,0.4),
+        0 0 10px rgba(252, 219, 5, 0.3);
 }
 
-.cyber-square:hover::before {
-    left: 100%;
+@keyframes mc-enchant-glow {
+    0%, 100% { box-shadow: inset 1px 1px 0px rgba(252,219,5,0.3), inset -1px -1px 0px rgba(0,0,0,0.4), 0 0 8px rgba(252,219,5,0.2); }
+    50% { box-shadow: inset 1px 1px 0px rgba(252,219,5,0.5), inset -1px -1px 0px rgba(0,0,0,0.4), 0 0 16px rgba(252,219,5,0.4); }
 }
 
-.cyber-square:hover {
-    border-color: var(--neon-cyan);
-    box-shadow: 0 0 15px rgba(0, 245, 255, 0.3);
-}
-
-.cyber-square.marked {
-    background: linear-gradient(135deg, rgba(0, 245, 255, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
-    border-color: var(--neon-cyan);
-    box-shadow: 0 0 20px rgba(0, 245, 255, 0.4), inset 0 0 20px rgba(0, 245, 255, 0.1);
-}
-
-.cyber-square.winning {
-    animation: pulse-neon 1s ease-in-out infinite;
-    border-color: var(--neon-magenta);
-}
-
-@keyframes pulse-neon {
-    0%, 100% {
-        box-shadow: 0 0 20px var(--neon-magenta), 0 0 40px var(--neon-magenta);
-    }
-    50% {
-        box-shadow: 0 0 30px var(--neon-magenta), 0 0 60px var(--neon-magenta), 0 0 80px var(--neon-magenta);
-    }
-}
-
-/* Glitch text effect */
-.glitch {
-    position: relative;
-}
-
-.glitch::before,
-.glitch::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.glitch::before {
-    animation: glitch-1 2s infinite linear alternate-reverse;
-    color: var(--neon-cyan);
-    z-index: -1;
-}
-
-.glitch::after {
-    animation: glitch-2 3s infinite linear alternate-reverse;
-    color: var(--neon-magenta);
-    z-index: -2;
-}
-
-@keyframes glitch-1 {
-    0%, 100% { clip-path: inset(0 0 95% 0); transform: translate(-2px, 2px); }
-    25% { clip-path: inset(30% 0 50% 0); transform: translate(2px, -2px); }
-    50% { clip-path: inset(60% 0 20% 0); transform: translate(-2px, 2px); }
-    75% { clip-path: inset(80% 0 5% 0); transform: translate(2px, -2px); }
-}
-
-@keyframes glitch-2 {
-    0%, 100% { clip-path: inset(95% 0 0 0); transform: translate(2px, -2px); }
-    25% { clip-path: inset(50% 0 30% 0); transform: translate(-2px, 2px); }
-    50% { clip-path: inset(20% 0 60% 0); transform: translate(2px, -2px); }
-    75% { clip-path: inset(5% 0 80% 0); transform: translate(-2px, 2px); }
-}
-
-/* Scanline effect */
-.scanlines::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: repeating-linear-gradient(
-        0deg,
-        rgba(0, 0, 0, 0.1) 0px,
-        rgba(0, 0, 0, 0.1) 1px,
-        transparent 1px,
-        transparent 2px
-    );
-    pointer-events: none;
-    z-index: 9999;
-}
-
+/* ============================================================
+   MISC UTILITIES
+   ============================================================ */
 .wrap-break-word {
     word-break: break-word;
 }
@@ -401,36 +403,33 @@ button:disabled {
     min-height: 60px;
 }
 
+/* ============================================================
+   MINECRAFT BOUNCE — Blocky Step Animation
+   ============================================================ */
 @keyframes bounce {
     0%, 100% {
-        transform: translateY(-25%);
-        animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+        transform: translateY(-8px);
+        animation-timing-function: steps(4, end);
     }
     50% {
         transform: translateY(0);
-        animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+        animation-timing-function: steps(4, end);
     }
 }
 
 .animate-\[bounce_0\.5s_ease-out\] {
-    animation: bounce 0.5s ease-out;
+    animation: bounce 0.6s steps(6, end);
 }
 
-@keyframes flicker {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.8; }
-}
-
-.animate-flicker {
-    animation: flicker 0.1s ease-in-out infinite;
-}
-
+/* ============================================================
+   BLAZOR ERROR UI
+   ============================================================ */
 #blazor-error-ui {
     color-scheme: light only;
-    background: var(--bg-card);
-    border-top: 1px solid var(--neon-magenta);
+    background: var(--mc-redstone);
+    color: var(--mc-text-white);
     bottom: 0;
-    box-shadow: 0 -5px 20px rgba(255, 0, 255, 0.3);
+    box-shadow: 0 -3px 0px rgba(0, 0, 0, 0.5);
     box-sizing: border-box;
     display: none;
     left: 0;
@@ -438,7 +437,9 @@ button:disabled {
     position: fixed;
     width: 100%;
     z-index: 1000;
-    color: var(--text-primary);
+    font-family: var(--mc-font);
+    border-top: 3px solid var(--mc-lava);
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
 }
 
     #blazor-error-ui .dismiss {
@@ -449,51 +450,177 @@ button:disabled {
     }
 
 .blazor-error-boundary {
-    background: var(--bg-card);
-    border: 1px solid var(--neon-magenta);
-    padding: 1rem;
-    color: var(--neon-magenta);
+    background: var(--mc-redstone);
+    padding: 1rem 1rem 1rem 1.5rem;
+    color: var(--mc-text-white);
+    border: 3px solid var(--mc-lava);
+    font-family: var(--mc-font);
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
 }
 
     .blazor-error-boundary::after {
-        content: "SYSTEM ERROR DETECTED"
+        content: "⚠ An error has occurred."
     }
 
+/* ============================================================
+   LOADING PROGRESS — Minecraft XP Bar Style
+   ============================================================ */
 .loading-progress {
     position: absolute;
     display: block;
-    width: 8rem;
-    height: 8rem;
+    width: 10rem;
+    height: 10rem;
     inset: 20vh 0 auto 0;
     margin: 0 auto 0 auto;
 }
 
     .loading-progress circle {
         fill: none;
-        stroke: rgba(0, 245, 255, 0.2);
+        stroke: var(--mc-stone-dark);
         stroke-width: 0.6rem;
         transform-origin: 50% 50%;
         transform: rotate(-90deg);
     }
 
         .loading-progress circle:last-child {
-            stroke: var(--neon-cyan);
+            stroke: var(--mc-xp-green);
             stroke-dasharray: calc(3.141 * var(--blazor-load-percentage, 0%) * 0.8), 500%;
-            transition: stroke-dasharray 0.05s ease-in-out;
-            filter: drop-shadow(0 0 10px var(--neon-cyan));
+            transition: stroke-dasharray 0.05s steps(8, end);
         }
 
 .loading-progress-text {
     position: absolute;
     text-align: center;
     font-weight: bold;
-    font-family: 'Orbitron', monospace;
-    color: var(--neon-cyan);
+    font-family: var(--mc-font-heading);
+    color: var(--mc-xp-green);
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
     inset: calc(20vh + 3.25rem) 0 auto 0.2rem;
-    text-shadow: 0 0 10px var(--neon-cyan);
 }
 
     .loading-progress-text:after {
-        content: var(--blazor-load-percentage-text, "LOADING");
+        content: var(--blazor-load-percentage-text, "Loading...");
     }
-.mx-auto { margin-left: auto; margin-right: auto; }
+
+/* ============================================================
+   MINECRAFT PANEL — Inventory Window Style
+   Used on card-like containers
+   ============================================================ */
+.bg-white.rounded-lg,
+.bg-white.rounded-xl,
+div.bg-white {
+    background-color: var(--mc-panel-bg);
+    border: 3px solid;
+    border-color: var(--mc-panel-light) var(--mc-panel-dark) var(--mc-panel-dark) var(--mc-panel-light);
+    box-shadow:
+        inset 2px 2px 0px rgba(255,255,255,0.2),
+        inset -2px -2px 0px rgba(0,0,0,0.15),
+        3px 3px 0px rgba(0,0,0,0.2);
+}
+
+/* ============================================================
+   CUSTOM SCROLLBAR — Minecraft Style
+   ============================================================ */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--mc-stone-dark);
+    border: 2px solid var(--mc-panel-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--mc-stone-light);
+    border: 2px solid var(--mc-stone);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--mc-panel-light);
+}
+
+/* ============================================================
+   HEADER BAR — Minecraft Dark Oak Toolbar
+   ============================================================ */
+header.flex {
+    background-color: var(--mc-darkoak) !important;
+    border-bottom: 3px solid var(--mc-oak-dark) !important;
+    color: var(--mc-text-white);
+}
+
+header.flex h1 {
+    font-family: var(--mc-font-heading);
+    color: var(--mc-gold);
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.6);
+    letter-spacing: 2px;
+}
+
+header.flex button {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--mc-text-light);
+}
+
+header.flex button:hover {
+    background-color: rgba(255,255,255,0.1);
+    color: var(--mc-gold);
+}
+
+/* ============================================================
+   BINGO INDICATOR — Enchantment Table Glow
+   ============================================================ */
+div.bg-amber-100 {
+    background: linear-gradient(90deg, var(--mc-darkoak), var(--mc-oak-dark), var(--mc-darkoak));
+    color: var(--mc-gold) !important;
+    border-top: 2px solid var(--mc-gold);
+    border-bottom: 2px solid var(--mc-gold);
+    text-shadow: 0 0 8px rgba(252,219,5,0.6);
+    font-family: var(--mc-font-heading);
+    letter-spacing: 2px;
+    animation: mc-enchant-text 3s ease-in-out infinite;
+}
+
+@keyframes mc-enchant-text {
+    0%, 100% { text-shadow: 0 0 6px rgba(252,219,5,0.4); }
+    50% { text-shadow: 0 0 14px rgba(252,219,5,0.8), 0 0 20px rgba(252,219,5,0.3); }
+}
+
+/* ============================================================
+   MODAL — Minecraft Chest Opening Style
+   ============================================================ */
+.fixed.inset-0.bg-black\/50 {
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(2px);
+}
+
+.fixed.inset-0 > div {
+    background-color: var(--mc-panel-bg);
+    border: 4px solid;
+    border-color: var(--mc-panel-light) var(--mc-panel-dark) var(--mc-panel-dark) var(--mc-panel-light);
+    box-shadow:
+        inset 3px 3px 0px rgba(255,255,255,0.2),
+        inset -3px -3px 0px rgba(0,0,0,0.2),
+        6px 6px 0px rgba(0,0,0,0.4);
+}
+
+/* ============================================================
+   SELECTION HIGHLIGHT — Pixel art style
+   ============================================================ */
+::selection {
+    background-color: var(--mc-water);
+    color: var(--mc-text-white);
+}
+
+/* ============================================================
+   MINECRAFT LINKS
+   ============================================================ */
+a {
+    color: var(--mc-diamond);
+    text-decoration: none;
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.3);
+}
+
+a:hover {
+    color: var(--mc-gold);
+    text-shadow: 0 0 6px rgba(252,219,5,0.4);
+}
